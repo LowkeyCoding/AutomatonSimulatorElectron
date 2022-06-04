@@ -1,4 +1,3 @@
-
 const { ipcRenderer } = require('electron');
 var fsm = (function() {
 	var self = null;
