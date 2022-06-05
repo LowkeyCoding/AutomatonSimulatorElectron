@@ -8,24 +8,30 @@
   "scripts": {
     "dev": "npm run development",
     "start": "electron .",
-    "dist": "electron-builder -w"
+    "distw": "electron-builder -w",
+    "distl": "electron-builder -l",
+    "distm": "electron-builder -l"
   },
   "devDependencies": {
-    "electron-builder": "^23.0.3",
     "electron": "^19.0.1",
+    "electron-builder": "^23.0.3",
     "electron-reload": "^2.0.0-alpha.1",
     "electron-reloader": "^1.2.3"
   },
   "build": {
-    "appId":"dev.walsted.automatonsimulator",
+    "appId": "dev.walsted.automatonsimulator",
     "productName": "Automaton Simulator",
-    "target":"NSIS",
-    "directories":{
+    "target": "NSIS",
+    "directories": {
       "output": "build"
     },
     "nsis": {
       "allowToChangeInstallationDirectory": true,
       "oneClick": false
     }
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.8",
+    "electron-prompt": "^1.7.0"
   }
 }

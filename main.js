@@ -1,4 +1,6 @@
-const { ipcMain, app, dialog, BrowserWindow } = require('electron')
+const { ipcMain, app, dialog, BrowserWindow } = require('electron');
+const electronPrompt = require('electron-prompt');
+const { prompt } = require('electron-prompt')
 var fs = require('fs')
 
 const path = require('path')
@@ -51,6 +53,18 @@ app.on('activate', () => {
     }
 })
 
+ipcMain.on('rename', (event, arg) => {
+    electronPrompt({
+        title: 'New name',
+        label: 'Rename node: '+arg.data,
+        type: 'input'
+    }).then(name => {
+        if(name){
+            event.sender.send('renamed', {data: name })
+        }
+    })
+})
+
 ipcMain.on('save', (event, arg) => {
     var options = {
         title: "Save file",
@@ -58,7 +72,7 @@ ipcMain.on('save', (event, arg) => {
         buttonLabel : "Save",
 
         filters :[
-            {name: 'txt', extensions: ['txt']},
+            {name: 'at', extensions: ['at']},
             {name: 'All Files', extensions: ['*']}
         ]
     };
@@ -78,7 +92,7 @@ ipcMain.on('load', (event, arg) => {
         multiSelections: false,
 
         filters :[
-            {name: 'txt', extensions: ['txt']},
+            {name: 'at', extensions: ['at']},
             {name: 'All Files', extensions: ['*']}
         ]
     };

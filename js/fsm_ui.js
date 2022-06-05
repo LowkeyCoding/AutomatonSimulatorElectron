@@ -308,6 +308,7 @@ var fsm = (function() {
 
 		setGraphContainer: function(newContainer) {
 			container = newContainer;
+			window.c = container;
 			jsPlumb.Defaults.Container = container;
 			return self;
 		},
@@ -332,12 +333,13 @@ var fsm = (function() {
 		 * @param {jQuery} state The state to rename.
 		 */
 		renameState: function(state) {
+			window.state = state
+			ipcRenderer.on('renamed', (event,arg) => {
+				window.state.data('displayid', arg.data); 
+				window.state.find('.stateName').text(arg.data);
+			})
 			if (state.attr('id') !== 'start') {
-				var newname = window.prompt('New name', state.data('displayid'));
-				if (newname) {
-					state.data('displayid', newname);
-					state.find('.stateName').text(newname);
-				}
+				ipcRenderer.send('rename', {data: state.data('displayid')})
 			}
 		},
 
