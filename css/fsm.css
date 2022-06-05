@@ -44,7 +44,7 @@ h5 {
 
 #tools {
   position: absolute;
-  width: 175px;
+  margin-top: 49px;
 }
 
   #testResult {
@@ -71,7 +71,7 @@ h5 {
   }
 
 #mainHolder {
-  margin-left: 185px;
+  margin-left: 58px;
   min-width: 500px;
 }
 
@@ -306,6 +306,10 @@ button.image img, img.delete {
   display: inline-block;
   vertical-align: middle;
 }
+#tools .image {
+  float: left;
+}
+
 
 img.delete {width:16px; height: 16px; background-position: 0 -198px;}
 img.delete:hover {background-position: 0 -176px;}
