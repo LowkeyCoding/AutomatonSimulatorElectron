@@ -338,9 +338,7 @@ var fsm = (function() {
 				window.state.data('displayid', arg.data); 
 				window.state.find('.stateName').text(arg.data);
 			})
-			if (state.attr('id') !== 'start') {
-				ipcRenderer.send('rename', {data: state.data('displayid')})
-			}
+			ipcRenderer.send('rename', {data: state.data('displayid')})
 		},
 
 		removeState: function(state) {

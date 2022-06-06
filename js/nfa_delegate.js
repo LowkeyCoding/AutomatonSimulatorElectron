@@ -31,7 +31,7 @@ var nfa_delegate = (function() {
 
   var dialogSave = function(update) {
     var inputChar = $('#nfa_dialog_readCharTxt').val();
-    if (inputChar.length > 1) {inputChar = inputChar[0];}
+    {inputChar = inputChar[0];}
     
     if (update) {
       nfa.removeTransition(dialogActiveConnection.sourceId, dialogActiveConnection.getLabel(), dialogActiveConnection.targetId);
@@ -64,7 +64,7 @@ var nfa_delegate = (function() {
     dialogDiv = $('<div></div>', {style:'text-align:center;'});
     $('<div></div>', {style:'font-size:small;'}).html('Blank for Empty String: '+emptyLabel+'<br />Read from Input').appendTo(dialogDiv);
     $('<span></span>', {id:'nfa_dialog_stateA', 'class':'tranStart'}).appendTo(dialogDiv);
-    $('<input />', {id:'nfa_dialog_readCharTxt', type:'text', maxlength:1, style:'width:30px;text-align:center;'})
+    $('<input />', {id:'nfa_dialog_readCharTxt', type:'text', style:'width:30px;text-align:center;'})
       .val('A')
       .keypress(function(event) {
         if (event.which === $.ui.keyCode.ENTER) {dialogDiv.parent().find('div.ui-dialog-buttonset button').eq(-1).click();}
